@@ -13,11 +13,15 @@ namespace SiteKeepAliver
         static void Main(string[] args)
         {
             var lines = File.ReadLines("urls.txt");
-            foreach (var line in lines)
+            foreach (var url in lines)
             {
-                var client = new RestClient(line);
-                var request = new RestRequest();
-                request.Method = Method.GET;
+                Console.WriteLine($"Connecting to {url}");
+                var client = new RestClient(url);
+                var request = new RestRequest
+                {
+                    Method = Method.GET
+                };
+
                 var response = client.Execute(request);
             }
         }
